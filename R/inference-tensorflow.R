@@ -138,7 +138,11 @@ inference_tensorflow <- function(Y,
 
   mle_params <- sess$run(list(delta, beta, phi, gamma), feed_dict = fd_full)
 
+  sess$close()
+
   names(mle_params) <- c("delta", "beta", "phi", "gamma")
+
+  mle_params$delta[rho == 0] <- 0
 
   if(is.null(colnames(rho))) {
     colnames(rho) <- paste0("cell_type_", seq_len(ncol(rho)))
