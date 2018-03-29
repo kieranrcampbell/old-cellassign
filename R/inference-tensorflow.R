@@ -129,6 +129,8 @@ inference_tensorflow <- function(Y,
       ll <- ll + l_new
     }
 
+    log_liks <- c(log_liks, ll)
+
     ll_diff <- (ll - ll_old) / abs(ll_old)
     print(glue("{mi}\tL old: {ll_old}; L new: {ll}; Difference (%): {ll_diff}"))
     ll_old <- ll
@@ -153,7 +155,8 @@ inference_tensorflow <- function(Y,
 
   rlist <- list(
     cell_type = cell_type,
-    mle_params = mle_params
+    mle_params = mle_params,
+    log_lik = log_liks
   )
 
   return(rlist)
