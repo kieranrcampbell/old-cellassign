@@ -14,7 +14,7 @@ cellassign <- function(exprs_obj,
                        rel_tol_em = 1e-4,
                        max_iter_adam = 1e5,
                        max_iter_em = 20,
-                       learning_rate = 0.1,
+                       learning_rate = 1e-4,
                        verbose = TRUE,
                        sce_assay = "counts") {
 

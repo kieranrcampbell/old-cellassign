@@ -28,7 +28,7 @@ inference_tensorflow <- function(Y,
                                  rel_tol_em = 1e-4,
                                  max_iter_adam = 1e5,
                                  max_iter_em = 20,
-                                 learning_rate = 0.1) {
+                                 learning_rate = 1e-4) {
 
   tfd <- tf$contrib$distributions
 
@@ -88,7 +88,7 @@ inference_tensorflow <- function(Y,
   L_y = tf$reduce_sum(tf$reduce_logsumexp(eta_y, 0L))
 
   # Split the data
-  splits <- split(seq_len(N), seq_len(n_batches))
+  splits <- split(sample(seq_len(N)), seq_len(n_batches))
 
   # Start the graph and inference
   sess <- tf$Session()
